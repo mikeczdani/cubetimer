@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+html {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #231F20;
+    font-family: "Ubuntu Mono", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Timer {
+    color: #EFE6DD;
+    font-size: 5rem;
+    height: fit-content;
+    text-align: center;
+    margin-top: -5rem; /* Csökkentve a padding-top értéket */
+    font-weight: 800;
+}
+
+.Scramble {
+    color: #CECAC5;
+    font-size: 1.5rem;
+    height: fit-content;
+}
+
+
+.BestWorst {
+    padding-top: 13rem;
+    color: #F3DFA2;
+    font-size: 1rem;
+    margin-bottom: 1rem; /* Esetleges további beállítás */
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+#timerDisplay.active {
+    color: #BB4430; /* Szín, amikor a timer aktív (pl. piros) */
+}
