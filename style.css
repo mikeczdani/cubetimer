@@ -43,8 +43,55 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 3rem;
+    position: relative;
 }
 
 #timerDisplay.active {
     color: #BB4430; /* Szín, amikor a timer aktív (pl. piros) */
+}
+
+@media (max-width: 768px) {
+    .Timer {
+        font-size: 3rem; /* Reduce font size for smaller screens */
+        margin-top: -3rem; /* Adjust margin */
+    }
+
+    .Scramble {
+        font-size: 1.5rem; /* Reduce font size */
+        padding: 0 2rem 0 2rem;
+    }
+
+    .BestWorst {
+        padding-top: 8rem; /* Adjust padding */
+        font-size: 0.75rem; /* Reduce font size */
+        gap: 1rem; /* Reduce gap between elements */
+    }
+}
+
+.best-time::after,
+.worst-time::after {
+    content: attr(data-scramble); /* Add the delete button symbol (X) */
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    z-index: 10;
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.best-time:hover::after,
+.worst-time:hover::after {
+    display: block;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.best-time::after:hover,
+.worst-time::after:hover {
+    color: #ff6347; /* Change color on hover to indicate it's clickable */
 }

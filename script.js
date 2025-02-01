@@ -6,6 +6,8 @@ let elapsedTime = 0;
 // Legjobb és legrosszabb idő tárolása
 let bestTime = null;
 let worstTime = null;
+let bestScramble = "";
+let worstScramble = "";
 
 // Lehetséges forgatások
 const moves = ["U", "U'", "L", "L'", "R", "R'", "D", "D'", "F", "F'", "B", "B'"];
@@ -59,19 +61,21 @@ function updateTimer() {
 }
 
 // Legjobb és legrosszabb idő frissítése
-function updateBestWorstTimes() {
+function updateBestWorstTimes(scramble) {
     const currentTime = elapsedTime;
 
     // Legjobb idő frissítése
     if (bestTime === null || currentTime < bestTime) {
         bestTime = currentTime;
-        document.querySelector('.BestWorst').innerHTML = `<span>Best Time: ${formatTime(bestTime)}</span> <span>Worst Time: ${formatTime(worstTime)}</span>`;
+        bestScramble = scramble; // Store the scramble for the best time
+        document.querySelector('.BestWorst').innerHTML = `<span class="best-time" data-scramble="${bestScramble}">Best Time: ${formatTime(bestTime)}</span> <span class="worst-time" data-scramble="${worstScramble}">Worst Time: ${formatTime(worstTime)}</span>`;
     }
 
     // Legrosszabb idő frissítése
     if (worstTime === null || currentTime > worstTime) {
         worstTime = currentTime;
-        document.querySelector('.BestWorst').innerHTML = `<span>Best Time: ${formatTime(bestTime)}</span> <span>Worst Time: ${formatTime(worstTime)}</span>`;
+        worstScramble = scramble; // Store the scramble for the worst time
+        document.querySelector('.BestWorst').innerHTML = `<span class="best-time" data-scramble="${bestScramble}">Best Time: ${formatTime(bestTime)}</span> <span class="worst-time" data-scramble="${worstScramble}">Worst Time: ${formatTime(worstTime)}</span>`;
     }
 }
 
@@ -83,7 +87,8 @@ function toggleTimer() {
         isRunning = false;
 
         // Legjobb és legrosszabb idő frissítése
-        updateBestWorstTimes();
+        const currentScramble = document.getElementById('scrambleDisplay').textContent;
+        updateBestWorstTimes(currentScramble);
 
         // Új scramble generálása és kiírása
         const scramble = generateScramble();
